@@ -46,7 +46,7 @@ public class DaVG {
     // \/ USER INTERFACE \/
 
     public static void main( String[] args ) throws InterruptedException, IOException {
-        VersionNo = "R112020"; // Version Number
+        VersionNo = "R101326"; // Version Number
         debugMode = false; // Debug Mode (true/false)
         cutscenesEnabled = true; // Cutscenes (enabled = true, disabled = false)
         LongDelay = 3; // length of LongDelay in seconds
@@ -135,6 +135,7 @@ public class DaVG {
         if (profileList == null){
             profileList = new String[0];
         }
+        String newUserName = "";
         if (profileList.length == 0) {
             veryFirstBoot=true;
             LongDelay();
@@ -157,7 +158,8 @@ public class DaVG {
                         ShortDelay();
                         System.out.println("//WARNUNG: PROFIL-BENENNUNGEN SIND GROß-UND-KLEINSCHREIBUNG"); //WARNING: PROFILE NAMES ARE CASE-SENSITIVE
                         player.setIsEmpty( false );
-                        player.setUserName(input.nextLine());
+                        newUserName = input.nextLine();
+                        player.setUserName(newUserName);
                         break;
                     case "N": case "n":
                         optionNotChosen = false;
@@ -402,11 +404,11 @@ public class DaVG {
                     switch (input.nextLine()) {
                         case "STANDARD": case "standard": case "0":
                             equipOptionNotChosen = false;
-                            intro(player, retUser);
+                            intro(player, retUser, newUserName);
                             break;
                         case "KURZ": case "kurz": case "1":
                             equipOptionNotChosen = false;
-                            intro2(player, retUser);
+                            intro2(player, retUser, newUserName);
                             break;
                         case "AUSLASSEN": case "auslassen": case "2":
                             equipOptionNotChosen = false;
@@ -444,15 +446,15 @@ public class DaVG {
                 ShortDelay();
                 System.out.println( "//DEFEKT IM FESTPLATTE VERMUTLICH" ); //FAULT IN HARD DRIVE SUSPECTED
                 ShortDelay();
-                intro(player, retUser);
+                intro(player, retUser, newUserName);
             }
         } else {
             boolean retUser = false;
-            intro(player, retUser);
+            intro(player, retUser, newUserName);
         }
     }
 
-    private static void intro(playerCharacter player, boolean retUser) throws IOException, InterruptedException {
+    private static void intro(playerCharacter player, boolean retUser, String newUserName ) throws IOException, InterruptedException {
         System.out.println( "//EINLITEN DIAGNOSTISCH-PRÜFUNG-BATTERIE... " ); //INITIALIZING DIAGNOSTIC TEST BATTERY...
         LongDelay();
         System.out.print( "//PROZESSOR-ADER 1... " ); //PROCESSOR CORE 1...
@@ -487,11 +489,10 @@ public class DaVG {
         LongDelay();
         System.out.println( "O.K." );
         NoDelay();
-        intro2( player, retUser);
+        intro2( player, retUser, newUserName);
 
     }
-
-    private static void intro2(playerCharacter player , boolean retUser) throws InterruptedException, IOException {
+    private static void intro2(playerCharacter player , boolean retUser, String newUserName ) throws InterruptedException, IOException {
         System.out.print( "//ABRUFEN BENUTZERPROFIL... " ); //RETRIEVING USER PROFILE...
         if ( retUser ) {
             LongDelay();
@@ -537,7 +538,7 @@ public class DaVG {
                         System.out.println( "KOMPLETT");
                         ShortDelay();
                         optionNotChosen = false;
-                        newuser( player );
+                        newuser( player, newUserName );
                         break;
                     case "N": case "n": case "HERUNTERFAHREN": case "herunterfahren": case "SHUTDOWN": case "shutdown": case "HNTF": case "hntf": case "H": case "h":
                         setupShutdown = true;
@@ -575,7 +576,7 @@ public class DaVG {
         }
     }
 
-    private static void newuser( playerCharacter player ) throws InterruptedException, IOException {
+    private static void newuser( playerCharacter player, String userName ) throws InterruptedException, IOException {
         System.out.println( "//DIAGNOSTISCH-PRÜFUNG-BATTERIE KOMPLETT" );//DIAGNOSTIC TESTS COMPLETED.
         LongDelay();
         System.out.println( "//FEHLER: KEINE DATEN ZUM GEGENWÄRTIG-BENUTZER GEFUNDEN" );//ERROR: NO DATA ON CURRENT USER FOUND.
@@ -625,8 +626,8 @@ public class DaVG {
                     break;
             }
         }
-        System.out.println( "//BITTE EINGEBEN NEU BENUTZERNAME" );//PLEASE INPUT NEW USER NAME.
-        String userName = input.nextLine();
+        //System.out.println( "//BITTE EINGEBEN NEU BENUTZERNAME" );//PLEASE INPUT NEW USER NAME.
+        //String userName = input.nextLine();
         System.out.print( "//SCHREIBEN ZU FESTPLATTE... " );//WRITING TO HARD DRIVE...
         File[] inventory = player.getPlayerInventory();
         inventory[0].mkdir();
