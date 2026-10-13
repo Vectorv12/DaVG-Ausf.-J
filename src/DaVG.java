@@ -46,7 +46,7 @@ public class DaVG {
     // \/ USER INTERFACE \/
 
     public static void main( String[] args ) throws InterruptedException, IOException {
-        VersionNo = "R101326"; // Version Number
+        VersionNo = "R101326_01"; // Version Number
         debugMode = false; // Debug Mode (true/false)
         cutscenesEnabled = true; // Cutscenes (enabled = true, disabled = false)
         LongDelay = 3; // length of LongDelay in seconds
@@ -644,7 +644,7 @@ public class DaVG {
          *
          * A character's Player Sheet contains all the information that defines the character themselves.
          *
-         * The information on a character - the Player Data - is stored in an index of 38 values, shown below:
+         * The information on a character - the Player Data - is stored in an index of 39 values, shown below:
          * 00 - Player Name
          * 01 - Preferred Language (This will be set to the DaVG's native Volkshavenish by default)
          * 02 - Synchronization Level (Starts at 1)
@@ -681,8 +681,9 @@ public class DaVG {
          * 33 - Software Slot 09
          * 34 - Primary Weapon ID
          * 35 - Secondary Weapon ID (if applicable)
-         * 36 - Auxiliary DaVG Module
-         * 37 - Special Properties
+         * 36 - Processor Grade
+         * 37 - Auxiliary DaVG Module
+         * 38 - Special Properties
          */
 
         player.setIsEmpty(false);
@@ -722,8 +723,9 @@ public class DaVG {
         player.setSoftware09("T09M"); //33
         player.setPrimaryWeapon("PWFM"); //34
         player.setSecondaryWeapon("SWFM"); //35
-        player.setAuxModule("N/A"); //36
-        player.setSpecialProperties("$"); //37
+        player.setProcessorGrade("5"); //36
+        player.setAuxModule("N/A"); //37
+        player.setSpecialProperties("$"); //38
         player.writePlayerData();
         LongDelay();
         System.out.println( "KOMPLETT" ); //COMPLETE

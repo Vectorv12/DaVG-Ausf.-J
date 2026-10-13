@@ -15,6 +15,50 @@ public class playerCharacter {
 
     boolean isEmpty;
 
+    /* A character's Player Sheet contains all the information that defines the character themselves.
+     *
+     * The information on a character - the Player Data - is stored in an index of 38 values, shown below:
+     * 00 - Player Name
+     * 01 - Preferred Language (This will be set to the DaVG's native Volkshavenish by default)
+     * 02 - Synchronization Level (Starts at 1)
+     * 03 - Lifetime Field Data (000 by default, Measured in DB)
+     * 04 - Current HP (Set at 100 by default)
+     * 05 - Maximum HP (Set at 100 by default)
+     * 06 - Current Status (Normal, Poisoned, etc.)
+     * 07 - Class 0
+     * 08 - Class 1 (if applicable)
+     * 09 - Class 2 (if applicable)
+     * 10 - Class 3 (if applicable)
+     * 11 - Strength score
+     * 12 - Dexterity score
+     * 13 - Constitution Score
+     * 14 - Intelligence Score
+     * 15 - Wisdom Score
+     * 16 - Charisma Score
+     * 17 - Background
+     * 18 - Background Proficiency 0
+     * 19 - Background Proficiency 1
+     * 20 - Skill Proficiency 0
+     * 21 - Skill Proficiency 1
+     * 22 - Skill Proficiency 2 (If applicable)
+     * 23 - Skill Proficiency 3 (If applicable)
+     * 24 - Software Slot 00
+     * 25 - Software Slot 01
+     * 26 - Software Slot 02
+     * 27 - Software Slot 03
+     * 28 - Software Slot 04
+     * 29 - Software Slot 05
+     * 30 - Software Slot 06
+     * 31 - Software Slot 07
+     * 32 - Software Slot 08
+     * 33 - Software Slot 09
+     * 34 - Primary Weapon ID
+     * 35 - Secondary Weapon ID (if applicable)
+     * 36 - Processor Grade
+     * 37 - Auxiliary DaVG Module
+     * 38 - Special Properties
+     */
+
     String userName; //00
     String userLanguage; //01
     String userLevel; //02
@@ -39,20 +83,21 @@ public class playerCharacter {
     String userSkillProficiency1; //21
     String userSkillProficiency2; //22
     String userSkillProficiency3; //23
-    String software00; //25
-    String software01; //26
-    String software02; //27
-    String software03; //28
-    String software04; //29
-    String software05; //30
-    String software06; //31
-    String software07; //32
-    String software08; //33
-    String software09; //34
+    String software00; //24
+    String software01; //25
+    String software02; //26
+    String software03; //27
+    String software04; //28
+    String software05; //29
+    String software06; //30
+    String software07; //31
+    String software08; //32
+    String software09; //33
 
-    String cW1ID; //35
-    String cW2ID; //36
+    String cW1ID; //34
+    String cW2ID; //35
 
+    String processorGrade; //36
     String auxModule; //37
 
     String specialProperties; //38
@@ -102,8 +147,9 @@ public class playerCharacter {
         this.software09 = null; //33, T09M (Tape 09 Missing) by default
         this.cW1ID = null; //34, N/A (Fists) by default
         this.cW2ID = null; //35, DwM (Dual-Wield Missing) by default
-        this.auxModule = null; //36
-        this.specialProperties = null; //37
+        this.processorGrade = null; // 36
+        this.auxModule = null; //37
+        this.specialProperties = null; //38
     }
 
 
@@ -431,8 +477,7 @@ public class playerCharacter {
         this.userSkillProficiency3 = proficiency;
     }
 
-
-    //Index 25
+    //Index 24
 
     public String getSoftware00(){
         return software00;
@@ -442,7 +487,7 @@ public class playerCharacter {
         this.software00 = software;
     }
 
-    //Index 26
+    //Index 25
 
     public String getSoftware01(){
         return software01;
@@ -452,7 +497,7 @@ public class playerCharacter {
         this.software01 = software;
     }
 
-    //Index 27
+    //Index 26
 
     public String getSoftware02(){
         return software02;
@@ -462,7 +507,7 @@ public class playerCharacter {
         this.software02 = software;
     }
 
-    //Index 28
+    //Index 27
 
     public String getSoftware03(){
         return software03;
@@ -472,7 +517,7 @@ public class playerCharacter {
         this.software03 = software;
     }
 
-    //Index 29
+    //Index 28
 
     public String getSoftware04(){
         return software04;
@@ -482,7 +527,7 @@ public class playerCharacter {
         this.software04 = software;
     }
 
-    //Index 25
+    //Index 29
 
     public String getSoftware05(){
         return software05;
@@ -492,7 +537,7 @@ public class playerCharacter {
         this.software05 = software;
     }
 
-    //Index 26
+    //Index 30
 
     public String getSoftware06(){
         return software06;
@@ -502,7 +547,7 @@ public class playerCharacter {
         this.software06 = software;
     }
 
-    //Index 27
+    //Index 31
 
     public String getSoftware07(){
         return software07;
@@ -512,7 +557,7 @@ public class playerCharacter {
         this.software07 = software;
     }
 
-    //Index 28
+    //Index 32
 
     public String getSoftware08(){
         return software08;
@@ -522,7 +567,7 @@ public class playerCharacter {
         this.software08 = software;
     }
 
-    //Index 29
+    //Index 33
 
     public String getSoftware09(){
         return software09;
@@ -532,7 +577,7 @@ public class playerCharacter {
         this.software09 = software;
     }
 
-    //Index 30
+    //Index 34
 
     public String getPrimaryWeapon(){
         return cW1ID;
@@ -542,13 +587,21 @@ public class playerCharacter {
         this.cW1ID = W1ID;
     }
 
-    //Index 31
+    //Index 35
 
     public String getSecondaryWeapon(){return cW2ID;}
 
     public void setSecondaryWeapon( String W2ID ){
         this.cW2ID = W2ID;
     }
+
+    // Index 36
+
+    public String getProcessorGrade() { return processorGrade; }
+
+    public void setProcessorGrade( String processorGrade ) { this.processorGrade = processorGrade; }
+
+    // Index 37
 
     public String getAuxModule(){
         return auxModule;
@@ -557,6 +610,8 @@ public class playerCharacter {
     public void setAuxModule( String auxModule ){
         this.auxModule = auxModule;
     }
+
+    // Index 38
 
     public String getSpecialProperties(){
         return specialProperties;
@@ -569,7 +624,7 @@ public class playerCharacter {
 
 
     public void readPlayerData( File playerDataLocation ){
-        String[] playerData = new String[38];
+        String[] playerData = new String[39];
         try {
             reader = new BufferedReader(new FileReader(playerDataLocation));
         } catch (FileNotFoundException e) {
@@ -605,24 +660,25 @@ public class playerCharacter {
         this.userSkillProficiency1 = playerData[21]; //21, S2M (Skill Proficiency 1 Missing) by default
         this.userSkillProficiency2 = playerData[22]; //22, S3M (Skill Proficiency 1 Missing) by default
         this.userSkillProficiency3 = playerData[23]; //23, S4M (Skill Proficiency 1 Missing) by default
-        this.software00 = playerData[24]; //25, T1M (Tape 1 Missing) by default
-        this.software01 = playerData[25]; //26, T2M (Tape 2 Missing) by default
-        this.software02 = playerData[26]; //27, T3M (Tape 3 Missing) by default
-        this.software03 = playerData[27]; //28, T4M (Tape 4 Missing) by default
-        this.software04 = playerData[28]; //29, T5M (Tape 5 Missing) by default
-        this.software05 = playerData[29]; //25, T1M (Tape 1 Missing) by default
-        this.software06 = playerData[30]; //26, T2M (Tape 2 Missing) by default
-        this.software07 = playerData[31]; //27, T3M (Tape 3 Missing) by default
-        this.software08 = playerData[32]; //28, T4M (Tape 4 Missing) by default
-        this.software09 = playerData[33]; //29, T5M (Tape 5 Missing) by default
-        this.cW1ID = playerData[34]; //30, N/A (Fists) by default
-        this.cW2ID = playerData[35]; //31, DwM (Dual-Wield Missing) by default
-        this.auxModule = playerData[36];
-        this.specialProperties = playerData[37];
+        this.software00 = playerData[24]; //24, T1M (Tape 1 Missing) by default
+        this.software01 = playerData[25]; //25, T2M (Tape 2 Missing) by default
+        this.software02 = playerData[26]; //26, T3M (Tape 3 Missing) by default
+        this.software03 = playerData[27]; //27, T4M (Tape 4 Missing) by default
+        this.software04 = playerData[28]; //28, T5M (Tape 5 Missing) by default
+        this.software05 = playerData[29]; //29, T1M (Tape 1 Missing) by default
+        this.software06 = playerData[30]; //30, T2M (Tape 2 Missing) by default
+        this.software07 = playerData[31]; //31, T3M (Tape 3 Missing) by default
+        this.software08 = playerData[32]; //32, T4M (Tape 4 Missing) by default
+        this.software09 = playerData[33]; //33, T5M (Tape 5 Missing) by default
+        this.cW1ID = playerData[34]; //34, N/A (Fists) by default
+        this.cW2ID = playerData[35]; //35, DwM (Dual-Wield Missing) by default
+        this.processorGrade = playerData[36]; //36
+        this.auxModule = playerData[37]; //37
+        this.specialProperties = playerData[38]; //38
     }
 
     public void writePlayerData () throws IOException {
-        playerData  = new String[38];
+        playerData  = new String[39];
         playerData[0] = getUserName()+"~";
         playerData[1] = getUserLanguage()+"~";
         playerData[2] = getUserLevel()+"~";
@@ -659,8 +715,9 @@ public class playerCharacter {
         playerData[33] = getSoftware09()+"~";
         playerData[34] = getPrimaryWeapon()+"~";
         playerData[35] = getSecondaryWeapon()+"~";
-        playerData[36] = getAuxModule()+"~";
-        playerData[37] = getSpecialProperties();
+        playerData[36] = getProcessorGrade()+"~";
+        playerData[37] = getAuxModule()+"~";
+        playerData[38] = getSpecialProperties();
 
         writer = new BufferedWriter(new FileWriter(getPlayerDataLocation()));
         for (int i = 0; i < playerData.length; i++){
