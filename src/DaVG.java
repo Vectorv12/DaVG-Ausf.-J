@@ -46,7 +46,7 @@ public class DaVG {
     // \/ USER INTERFACE \/
 
     public static void main( String[] args ) throws InterruptedException, IOException {
-        VersionNo = "R101326_01"; // Version Number
+        VersionNo = "R101326_02"; // Version Number
         debugMode = false; // Debug Mode (true/false)
         cutscenesEnabled = true; // Cutscenes (enabled = true, disabled = false)
         LongDelay = 3; // length of LongDelay in seconds
@@ -1469,7 +1469,7 @@ public class DaVG {
                                 ShortDelay();
                                 break;
                             case "DEXTERITY": case "dexterity": case "GSKT": case "gskt":
-                                System.out.println("//PLEASE ENTER NEW VALUE FOR DEXTERITY (GSKM)");
+                                System.out.println("//PLEASE ENTER NEW VALUE FOR DEXTERITY (GSKT)");
                                 inputValue = input.nextLine();
                                 int newDexterity;
                                 if (inputValue.equals(".")){
